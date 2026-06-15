@@ -38,7 +38,7 @@ export const getAllNotes = async (req, res) => {
             WHERE user_id = $1
             ORDER BY created_at DESC;
             `,
-            [req.user.userId]
+            [req.user.id]
         );
 
 
@@ -73,7 +73,7 @@ export const getNote = async (req, res) => {
             WHERE id = $1
             AND user_id = $2;
             `,
-            [id, req.user.userId]
+            [id, req.user.id]
         );
 
 
@@ -114,9 +114,9 @@ export const getNote = async (req, res) => {
             `
             UPDATE notes
             SET
-                title = COALESCE($1, title),
-                content = COALESCE($2, content),
-                is_pinned = COALESCE($3, is_pinned),
+                title = $1,
+                content = $2,
+                is_pinned = $3,
                 updated_at = CURRENT_TIMESTAMP
             WHERE id = $4
             AND user_id = $5
@@ -127,7 +127,7 @@ export const getNote = async (req, res) => {
                 content,
                 is_pinned,
                 id,
-                req.user.userId
+                req.user.id
             ]
         );
 
@@ -172,7 +172,7 @@ export const getNote = async (req, res) => {
             AND user_id = $2
             RETURNING *;
             `,
-            [id, req.user.userId]
+            [id, req.user.id]
         );
 
 

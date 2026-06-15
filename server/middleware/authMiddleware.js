@@ -5,7 +5,7 @@ dotenv.config();
 
 export const auth = (req, res, next) => {
     const token = req.cookies?.token;
-    console.log("Cookies: ",req.cookies);
+    // console.log("Cookies: ",req.cookies);
 
     if (!token) {
         return res.status(401).json({
@@ -13,7 +13,7 @@ export const auth = (req, res, next) => {
             message: "Unauthorized"
         });
     }
-    console.log("Token: ",token);
+    // console.log("Token: ",token);
     try {
         const decode = jwt.verify(
             token,
