@@ -1,9 +1,9 @@
-const API_URL = 'http://localhost:8080/api';
+const API_URL = import.meta.env.VITE_API_URL;
 
 // Auth APIs
 export const authAPI = {
   register: async (username, email, password) => {
-    const response = await fetch(`${API_URL}/auth/v1/register`, {
+    const response = await fetch(`${API_URL}/api/auth/v1/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -15,7 +15,7 @@ export const authAPI = {
   },
 
   login: async (email, password) => {
-    const response = await fetch(`${API_URL}/auth/v1/login`, {
+    const response = await fetch(`${API_URL}/api/auth/v1/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ export const authAPI = {
   },
 
   logout: async () => {
-    const response = await fetch(`${API_URL}/auth/v1/logout`, {
+    const response = await fetch(`${API_URL}/api/auth/v1/logout`, {
       method: 'POST',
       credentials: 'include'
     });
@@ -35,7 +35,7 @@ export const authAPI = {
   },
 
   refreshToken: async () => {
-    const response = await fetch(`${API_URL}/auth/v1/refreshToken`, {
+    const response = await fetch(`${API_URL}/api/auth/v1/refreshToken`, {
       method: 'POST',
       credentials: 'include'
     });
@@ -46,7 +46,7 @@ export const authAPI = {
 // Notes APIs
 export const notesAPI = {
   createNote: async (title, content, is_pinned = false) => {
-    const response = await fetch(`${API_URL}/v1/create/note`, {
+    const response = await fetch(`${API_URL}/api/v1/create/note`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ export const notesAPI = {
   },
 
   getAllNotes: async () => {
-    const response = await fetch(`${API_URL}/v1/get/notes`, {
+    const response = await fetch(`${API_URL}/api/v1/get/notes`, {
       method: 'GET',
       credentials: 'include'
     });
@@ -66,7 +66,7 @@ export const notesAPI = {
   },
 
   getNote: async (id) => {
-    const response = await fetch(`${API_URL}/v1/get/note/${id}`, {
+    const response = await fetch(`${API_URL}/api/v1/get/note/${id}`, {
       method: 'GET',
       credentials: 'include'
     });
@@ -74,7 +74,7 @@ export const notesAPI = {
   },
 
   updateNote: async (id, title, content, is_pinned) => {
-    const response = await fetch(`${API_URL}/v1/update/note/${id}`, {
+    const response = await fetch(`${API_URL}/api/v1/update/note/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ export const notesAPI = {
   },
 
   deleteNote: async (id) => {
-    const response = await fetch(`${API_URL}/v1/delete/note/${id}`, {
+    const response = await fetch(`${API_URL}/api/v1/delete/note/${id}`, {
       method: 'POST',
       credentials: 'include'
     });
